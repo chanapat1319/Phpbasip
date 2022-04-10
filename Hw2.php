@@ -9,13 +9,13 @@
 <body>
 <h1>ตรวจสอบเกรด</h1>
 <form action='<?=$_SERVER['PHP_SELF'];?>' method='POST'>
-    กรุณากรอกคะแนน <br/>
+    กรอกคะแนน <br/>
     1.<input type='text' name='score1'><br/>
     2.<input type='text' name='score2'><br/>
     3.<input type='text' name='score3'><br/>
     4.<input type='text' name='score4'><br/>
     <hr/>
-    <input type='submit' name="submit" value='ได้เกรด'>
+    <input type='submit' name="submit" value='ตัดเกรด'>
 </form>
 
 <?php 
@@ -26,31 +26,28 @@
 
     if(isset($_POST['submit'])){
         if($score1>25 or $score2> 25 or $score3>25 or $score4>25){
-            echo "กรอกเกิน";
+            echo "กรอกเกินนะจ๊ะ";
         }
         else{
             $score = $score1 + $score2 + $score3 + $score4;
-
-            if( $score >= 80 ){
-                echo "ได้เกรด A";
-            }else if( $score >= 75 && $score < 80 ){
-                echo "ได้เกรด B+";
-            }else if( $score >= 70 && $score < 75 ){
-                echo "ได้เกรด B";
-            }else if( $score >= 65 && $score < 70 ){
-                echo "ได้เกรด C+";
-            }else if( $score >= 60 && $score < 65 ){
-                echo "ได้เกรด C";
-            }else if( $score >= 55 && $score < 60 ){
-                echo "ได้เกรด D+";
-            }else if( $score >= 50 && $score < 55 ){
-                echo "ได้เกรด D";
-            }else{
-                echo "สอบตก";
+            if( $score > 0 ) {
+                $grade = "F";
+            if( $score >= 90 ) {
+                $grade = "A";
+            } else if( $score >= 80 ) {
+                $grade = "B";
+            } else if( $score >= 70 ) {
+                $grade = "C";
+            } else if( $score >= 60 ) {
+                $grade = "D";
+            } else {
+                $grade = "F";
             }
+
+            echo "คะแนน {$score} คุณได้รับเกรด {$grade}";
             }
         }
-     
+     }
  ?>
 
 
